@@ -7,92 +7,136 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
+import FirebaseDatabase
 
 class ViewController: UIViewController {
 
     
-    @IBOutlet weak var emailId: UITextField!
+    @IBOutlet weak var userName: UITextField!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var error: UILabel!
+    var ref = FIRDatabase.database().reference(withPath: "user-data")
+    //var flag=true
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        FIRAuth.auth()?.addStateDidChangeListener(){(auth,user) in
+            if user != nil {
+                self.performSegue(withIdentifier: "login", sender: self)
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
     @IBAction func loginAction(_ sender: Any) {
-        check()
-    }
-    /*override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        var test:String=""
-        if(identifier == "login"){
-            return check()
-        }
-        return false
-    }*/
-    func check() {
-        var flag:Bool
         var test=""
-        let emailId = self.emailId?.text
-        let password = self.password?.text
-        var request = URLRequest(url: URL(string: "http://localhost:3000/login")!)
-        request.httpMethod="post"
-        let postString = "emailid="+emailId!+"&password="+password!
-        request.httpBody=postString.data(using: .utf8)
-        let task=URLSession.shared.dataTask(with: request){
-            data,
-            response,
-            error in guard let data = data ,
-                error == nil else {
-                    print("error=\(error)")
-                    return
-                }
-            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
-                print("Status code is not 200")
-            }
-            let responseString = String(data: data, encoding: .utf8)
-            //print("responseString = \(responseString)")
-            /*let bodyStr = String(data: request.httpBody!, encoding: String.Encoding(rawValue: String.Encoding.utf8.rawValue))
-             if(bodyStr == emailId){
-             check=true
-             }
-             else{
-             check = false
-             }*/
-            
-            /*if let httpresponse = response as? HTTPURLResponse{
-             //var mail = HTTPURLResponse.value(forKey: "emailId") as? String
-             var mail = HTTPURLResponse.value(forUndefinedKey: "emailId") as? String
-             if(mail == emailId){
-             check = true
-             }
-             else{
-             check = false
-             }
-             }
-             */
-            
-            do {
-                let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String:String]
-                let mail = json.values//json["emailId"] as? [[String: Any]] ?? []
-                test=mail.first!
-                print(test)
-            } catch let error as NSError {
-                print(error)
-            }
-        }
-        if(test == emailId!){
-            flag = true
-            performSegue(withIdentifier: "login", sender: self)
-            //return true
+        let userName = self.userName.text!
+        let password = self.password.text!
+        var email:String = ""
+        if((userName.characters.count) < 1 || (password.characters.count) < 1){
+            error.text="Please enter email Id and password"
+            //flag=false
         }
         else{
-            flag = false
-            error.text="Email Id and Password did not match"
+            ref.child(userName).observeSingleEvent(of: .value, with: {(snapshot) in
+                //print(snapshot)
+            let value=snapshot.value as? NSDictionary
+            email=value?["emailId"] as? String ?? ""
+                FIRAuth.auth()?.signIn(withEmail: email, password: password){(user,err) in
+                    if((err) != nil){
+                        self.error.textColor=UIColor.red
+                        self.error.text="UserName and Password didn't match"
+                    }
+                    else{
+                        if(user?.displayName == nil || user?.displayName != userName){
+                            let update=FIRAuth.auth()?.currentUser?.profileChangeRequest()
+                            update?.displayName = userName
+                            update?.commitChanges(completion: {(err) in
+                                if(err != nil){
+                                   // print(err)
+                                }
+                            })
+                        }
+                        self.ref.child("\(userName)/password").setValue(password)
+                    }
+                }
+                //email=snapshot.value["emailId"] as? String
+                //print(email)
+                })
         }
-        task.resume()
     }
+    @IBAction func forgotPassword(_ sender: Any) {
+        let alert=UIAlertController.init(title: "Reset Password", message: "Password reset mail will be sent to your email Id", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addTextField(configurationHandler: {(textField) in
+            textField.placeholder="UserNAme"
+        })
+        //let userName = alert.textFields![0]
+        //userName.placeholder="UserName"
+        alert.addAction(UIAlertAction.init(title: "Reset", style: UIAlertActionStyle.default, handler: {(action: UIAlertAction!) in
+            let userName = alert.textFields![0]
+            if((userName.text?.characters.count)! < 4){
+                self.error.text="UserName not valid"
+            }
+            else{
+                self.ref.observeSingleEvent(of: .value, with: {(snapshot) in
+                    let value=snapshot.value as! NSDictionary
+                    var flag=false
+                    for val in (value.allKeys){
+                        //print(val)
+                        if(userName.text! == val as? String){
+                            flag=true
+                            break
+                        }
+                        //print("inside \(flag)")
+                    }
+                    if(!flag){
+                        self.error.text="No such UserName found"
+                    }
+                    else{
+                        self.ref.child(userName.text!).observeSingleEvent(of: .value, with: {(snapshot) in
+                            //print(snapshot)
+                            let value=snapshot.value as? NSDictionary
+                            let email=value?["emailId"] as? String ?? ""
+                            FIRAuth.auth()?.sendPasswordReset(withEmail: email, completion: {(error) in
+                                if(error != nil){
+                                    print(error!)
+                                    self.error.text="Error occured..try again"
+                                }
+                                else{
+                                    self.error.text="password reset request sent"
+                                }
+                            })
+                            
+                        })
+
+                    }
+                })
+            }
+        }))
+        alert.addAction(UIAlertAction.init(title: "cancel", style: UIAlertActionStyle.cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    @IBAction func unwindToLogin(segue: UIStoryboardSegue){
+        
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        error.text=" "
+        userName.text=""
+        password.text=""
+        
+    }
+    /*func check(){
+        if(flag){
+            performSegue(withIdentifier: "login", sender: self)
+        }
+    }*/
+    
 }

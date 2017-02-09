@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C3BB8EC1E4640BE00B94341 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C3BB8EB1E4640BE00B94341 /* AdSupport.framework */; };
+		1C3FE4141E4710BF00A88A00 /* LocationSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3FE4131E4710BF00A88A00 /* LocationSelectorViewController.swift */; };
+		1C5065C11E4790C70094E548 /* AddMembersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5065C01E4790C70094E548 /* AddMembersViewController.swift */; };
 		1C53630D1E32187B00DB2022 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C53630C1E32187B00DB2022 /* AppDelegate.swift */; };
 		1C53630F1E32187B00DB2022 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C53630E1E32187B00DB2022 /* ViewController.swift */; };
 		1C5363121E32187B00DB2022 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C5363101E32187B00DB2022 /* Main.storyboard */; };
@@ -14,14 +17,22 @@
 		1C5363171E32187B00DB2022 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C5363161E32187B00DB2022 /* Assets.xcassets */; };
 		1C53631A1E32187B00DB2022 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C5363181E32187B00DB2022 /* LaunchScreen.storyboard */; };
 		1C5363241E348F9100DB2022 /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5363231E348F9100DB2022 /* HomePageViewController.swift */; };
+		1C6C9F661E48A2CA00C2DF41 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C6C9F651E48A2CA00C2DF41 /* MapKit.framework */; };
+		1C8E604C1E4602DC00D625AA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1C8E604B1E4602DC00D625AA /* GoogleService-Info.plist */; };
 		1CA6ED9F1E3776D5002AD781 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA6ED9E1E3776D5002AD781 /* RegisterViewController.swift */; };
 		1CA6EDA11E377ED3002AD781 /* UpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA6EDA01E377ED3002AD781 /* UpdateViewController.swift */; };
-		1CA6EDA31E377F0A002AD781 /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA6EDA21E377F0A002AD781 /* PasswordViewController.swift */; };
+		1CA6EDA51E3DE720002AD781 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CA6EDA41E3DE720002AD781 /* CoreLocation.framework */; };
+		1CA6EDA71E3E0E12002AD781 /* SetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA6EDA61E3E0E12002AD781 /* SetupViewController.swift */; };
+		1CFED2D01E461EC30059F4D0 /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CFED2CF1E461EC30059F4D0 /* MoreViewController.swift */; };
 		82A761665C7FC13456684B76 /* libPods-Rendezvous.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F015A7DC600CB7CABFB6A25D /* libPods-Rendezvous.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		15F13CC57B751753FBD2B6C1 /* Pods-Rendezvous.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rendezvous.release.xcconfig"; path = "Pods/Target Support Files/Pods-Rendezvous/Pods-Rendezvous.release.xcconfig"; sourceTree = "<group>"; };
+		1C0A79541E45A5BE00CB036D /* Rendezvous.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Rendezvous.entitlements; sourceTree = "<group>"; };
+		1C3BB8EB1E4640BE00B94341 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		1C3FE4131E4710BF00A88A00 /* LocationSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSelectorViewController.swift; sourceTree = "<group>"; };
+		1C5065C01E4790C70094E548 /* AddMembersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMembersViewController.swift; sourceTree = "<group>"; };
 		1C5363091E32187B00DB2022 /* Rendezvous.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rendezvous.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C53630C1E32187B00DB2022 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1C53630E1E32187B00DB2022 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -32,9 +43,13 @@
 		1C53631B1E32187B00DB2022 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1C5363231E348F9100DB2022 /* HomePageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
 		1C5363251E3494F600DB2022 /* Rendezvous-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Rendezvous-Bridging-Header.h"; sourceTree = "<group>"; };
+		1C6C9F651E48A2CA00C2DF41 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		1C8E604B1E4602DC00D625AA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1CA6ED9E1E3776D5002AD781 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		1CA6EDA01E377ED3002AD781 /* UpdateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateViewController.swift; sourceTree = "<group>"; };
-		1CA6EDA21E377F0A002AD781 /* PasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
+		1CA6EDA41E3DE720002AD781 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		1CA6EDA61E3E0E12002AD781 /* SetupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupViewController.swift; sourceTree = "<group>"; };
+		1CFED2CF1E461EC30059F4D0 /* MoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
 		5B07BE1FB55029AAFCB34A43 /* Pods-Rendezvous.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rendezvous.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Rendezvous/Pods-Rendezvous.debug.xcconfig"; sourceTree = "<group>"; };
 		F015A7DC600CB7CABFB6A25D /* libPods-Rendezvous.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Rendezvous.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -44,6 +59,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C3BB8EC1E4640BE00B94341 /* AdSupport.framework in Frameworks */,
+				1CA6EDA51E3DE720002AD781 /* CoreLocation.framework in Frameworks */,
+				1C6C9F661E48A2CA00C2DF41 /* MapKit.framework in Frameworks */,
 				82A761665C7FC13456684B76 /* libPods-Rendezvous.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -72,6 +90,8 @@
 		1C53630B1E32187B00DB2022 /* Rendezvous */ = {
 			isa = PBXGroup;
 			children = (
+				1C0A79541E45A5BE00CB036D /* Rendezvous.entitlements */,
+				1C5065C01E4790C70094E548 /* AddMembersViewController.swift */,
 				1C53630C1E32187B00DB2022 /* AppDelegate.swift */,
 				1C53630E1E32187B00DB2022 /* ViewController.swift */,
 				1C5363231E348F9100DB2022 /* HomePageViewController.swift */,
@@ -79,11 +99,14 @@
 				1C5363161E32187B00DB2022 /* Assets.xcassets */,
 				1C5363181E32187B00DB2022 /* LaunchScreen.storyboard */,
 				1C53631B1E32187B00DB2022 /* Info.plist */,
+				1C8E604B1E4602DC00D625AA /* GoogleService-Info.plist */,
 				1C5363131E32187B00DB2022 /* Rendezvous.xcdatamodeld */,
 				1C5363251E3494F600DB2022 /* Rendezvous-Bridging-Header.h */,
 				1CA6ED9E1E3776D5002AD781 /* RegisterViewController.swift */,
 				1CA6EDA01E377ED3002AD781 /* UpdateViewController.swift */,
-				1CA6EDA21E377F0A002AD781 /* PasswordViewController.swift */,
+				1CA6EDA61E3E0E12002AD781 /* SetupViewController.swift */,
+				1CFED2CF1E461EC30059F4D0 /* MoreViewController.swift */,
+				1C3FE4131E4710BF00A88A00 /* LocationSelectorViewController.swift */,
 			);
 			path = Rendezvous;
 			sourceTree = "<group>";
@@ -100,6 +123,9 @@
 		F92B9B9397E19D0D6F3BD717 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1C6C9F651E48A2CA00C2DF41 /* MapKit.framework */,
+				1C3BB8EB1E4640BE00B94341 /* AdSupport.framework */,
+				1CA6EDA41E3DE720002AD781 /* CoreLocation.framework */,
 				F015A7DC600CB7CABFB6A25D /* libPods-Rendezvous.a */,
 			);
 			name = Frameworks;
@@ -135,7 +161,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Prakhar Srivastava";
 				TargetAttributes = {
 					1C5363081E32187B00DB2022 = {
@@ -143,6 +169,17 @@
 						DevelopmentTeam = 66X2M9MREG;
 						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Maps.iOS = {
+								enabled = 0;
+							};
+							com.apple.Push = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -170,6 +207,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1C53631A1E32187B00DB2022 /* LaunchScreen.storyboard in Resources */,
+				1C8E604C1E4602DC00D625AA /* GoogleService-Info.plist in Resources */,
 				1C5363171E32187B00DB2022 /* Assets.xcassets in Resources */,
 				1C5363121E32187B00DB2022 /* Main.storyboard in Resources */,
 			);
@@ -230,10 +268,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1CFED2D01E461EC30059F4D0 /* MoreViewController.swift in Sources */,
 				1C5363241E348F9100DB2022 /* HomePageViewController.swift in Sources */,
 				1CA6ED9F1E3776D5002AD781 /* RegisterViewController.swift in Sources */,
 				1C5363151E32187B00DB2022 /* Rendezvous.xcdatamodeld in Sources */,
-				1CA6EDA31E377F0A002AD781 /* PasswordViewController.swift in Sources */,
+				1C3FE4141E4710BF00A88A00 /* LocationSelectorViewController.swift in Sources */,
+				1C5065C11E4790C70094E548 /* AddMembersViewController.swift in Sources */,
+				1CA6EDA71E3E0E12002AD781 /* SetupViewController.swift in Sources */,
 				1C53630F1E32187B00DB2022 /* ViewController.swift in Sources */,
 				1C53630D1E32187B00DB2022 /* AppDelegate.swift in Sources */,
 				1CA6EDA11E377ED3002AD781 /* UpdateViewController.swift in Sources */,
@@ -280,6 +321,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -329,6 +371,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;

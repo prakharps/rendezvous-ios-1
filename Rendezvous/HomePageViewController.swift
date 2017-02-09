@@ -12,11 +12,13 @@ import CoreLocation
 
 class HomePageViewController: UIViewController,CLLocationManagerDelegate {
 
-    var mapView:GMSMapView!
+    //var mapView:GMSMapView!
+    let googleMapApiKey = "AIzaSyC05wOt4hW17wLeoH9YQnLlOd9FrLv7_Rw"
     var locationManager = CLLocationManager()
     var location:CLLocation!
     override func viewDidLoad() {
         super.viewDidLoad()
+        GMSServices.provideAPIKey(googleMapApiKey)
         // Do any additional setup after loading the view.
         //Navigation Drawer
         /*navigationItem.leftBarButtonItem = UIBarButtonItem(
@@ -30,21 +32,35 @@ class HomePageViewController: UIViewController,CLLocationManagerDelegate {
         locationManager.requestAlwaysAuthorization()
         locationManager.requestWhenInUseAuthorization()
         if(CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways || CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse /*|| CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorized*/){
+            locationManager.requestLocation()
             location=locationManager.location
+            locationManager.startUpdatingLocation()
+            //location=locationManager.location
             //let camera=GMSCameraPosition.camera(withLatitude: 37.785834, longitude: -122.406417, zoom: 6.0)
             let camera=GMSCameraPosition.camera(withLatitude: location.coordinate.latitude, longitude: location.coordinate.longitude, zoom: 6.0)
-            mapView=GMSMapView.map(withFrame: CGRect.zero, camera: camera)
-            self.view.addSubview(mapView)
+            let mapView=GMSMapView.map(withFrame: CGRect.zero, camera: camera)
+            mapView.isMyLocationEnabled=true
+            mapView.camera=camera
+            //self.view.addSubview(mapView)
+            view = mapView
             //self.location
-            let marker=GMSMarker()
+            
             //marker.position=CLLocationCoordinate2D(latitude: 37.785834, longitude: -122.406417)
-            marker.position=CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-            //marker.title = "You"
+            let position=CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+            let marker=GMSMarker(position: position)
+            //marker.position=CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+            marker.title = "You"
             marker.map=mapView
             //Map ends here
             
         }
+    }
     
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        self.location = locations.first
+    }
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error)
     }
     
     /*func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {

@@ -8,18 +8,55 @@
 
 import UIKit
 import CoreData
+import CoreLocation
 import GoogleMaps
+import Firebase
+import GooglePlaces
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate {
 
     var window: UIWindow?
+    var locationManager = CLLocationManager()
     let googleMapApiKey = "AIzaSyC05wOt4hW17wLeoH9YQnLlOd9FrLv7_Rw"
 
+    override init(){
+        FIRApp.configure()
+    }
+    
+    
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         GMSServices.provideAPIKey(googleMapApiKey)
+        GMSPlacesClient.provideAPIKey(googleMapApiKey)
         // Override point for customization after application launch.
+        application.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
+        CLLocationManager().allowsBackgroundLocationUpdates = true
+        getLocation()
         return true
+    }
+    
+    func getLocation() {
+        self.locationManager = CLLocationManager()
+        self.locationManager.delegate = self
+        /*if self.locationManager.responds(to: #selector(self.requestAlwaysAuthorization)) {
+            self.locationManager.requestAlwaysAuthorization()
+        }*/
+        //if(CLLocationManager.authorizationStatus() != CLAuthorizationStatus.authorizedAlways){
+            self.locationManager.requestAlwaysAuthorization()
+        //}
+        self.locationManager.distanceFilter = kCLDistanceFilterNone
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        if !CLLocationManager.locationServicesEnabled() {
+            // location services is disabled, alert user
+            //var servicesDisabledAlert = UIAlertView(title: "Alert", message: "Location service is disable. Please enable to access your current location.", delegate: nil, cancelButtonTitle: "OK", otherButtonTitles: "")
+            //servicesDisabledAlert.show()
+            let alert=UIAlertController.init(title: "Alert", message: "Location service is disable. Please enable to access your current location", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.cancel, handler: nil))
+        }
+        else {
+            self.locationManager.startUpdatingLocation()
+        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
