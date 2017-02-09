@@ -1,14 +1,14 @@
 //
-//  PasswordViewController.swift
+//  LocationSelectorViewController.swift
 //  Rendezvous
 //
-//  Created by Prakhar Srivastava on 1/24/17.
+//  Created by Prakhar Srivastava on 2/5/17.
 //  Copyright © 2017 Prakhar Srivastava. All rights reserved.
 //
 
 import UIKit
 
-class PasswordViewController: UIViewController {
+class LocationSelectorViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
