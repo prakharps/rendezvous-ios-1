@@ -90,7 +90,7 @@ class ViewController: UIViewController {
                     var flag=false
                     for val in (value.allKeys){
                         //print(val)
-                        if(userName.text! == val as? String){
+                        if(userName.text! == val as! String){
                             flag=true
                             break
                         }

@@ -45,7 +45,7 @@ class RegisterViewController: UIViewController {
     
     @IBAction func register(_ sender: Any) {
         error.textColor=UIColor.red
-        var charSet=CharacterSet(charactersIn: "!@#$%^&*()-_=+{}[]|\\:;<,>.?/'\"")
+        let charSet=CharacterSet(charactersIn: "!@#$%^&*()-_=+{}[]|\\:;<,>.?/'\"")
         var userName = self.userName.text!
         var password = self.password.text
         var emailId = self.emailId.text
@@ -74,19 +74,19 @@ class RegisterViewController: UIViewController {
             error.text="Username must be more than 4 alphabets"
             return
         }
-        else if((password?.characters.count)! < 6){
+        else if((password!.characters.count) < 6){
             error.text="Password must be more than 6 digits"
             return
         }
-        else if((emailId?.characters.count)! < 4){
+        else if((emailId!.characters.count) < 4){
             error.text="enter a valid email id"
             return
         }
-        else if((fullName?.characters.count)! < 1){
+        else if((fullName!.characters.count) < 1){
             error.text="enter a name"
             return
         }
-        else if((phoneNo?.characters.count)! < 10 || (phoneNo?.characters.count)! > 10){
+        else if((phoneNo!.characters.count) < 10 || (phoneNo?.characters.count)! > 10){
             error.text="Enter a valid phone number"
             return
         }

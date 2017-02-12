@@ -113,8 +113,9 @@ class AddMembersViewController: UIViewController,UITableViewDelegate,UITableView
         ref.child("\(event)/noOfMembers").setValue(members.count)
         for i in 0..<members.count{
             ref.child("\(event)/member\(i)").setValue(members[i])
-            refUser.child("\(members[i])/noOfEvents").observeSingleEvent(of: .value, with: {(snapshot) in
-                var no = snapshot.value as! Int
+            refUser.child("\(members[i])").observeSingleEvent(of: .value, with: {(snapshot) in
+                let value = snapshot.value as? NSDictionary
+                var no=value?["noOfEvents"] as? Int ?? 0
                 no += 1
                 self.refUser.child("\(self.members[i])/noOfEvents").setValue(no)
                 self.refUser.child("\(self.members[i])/event\(no)").setValue(event)
