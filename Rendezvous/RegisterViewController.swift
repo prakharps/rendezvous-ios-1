@@ -86,6 +86,8 @@ class RegisterViewController: UIViewController {
             error.text="enter a name"
             return
         }
+            
+        
         else if((phoneNo!.characters.count) < 10 || (phoneNo?.characters.count)! > 10){
             error.text="Enter a valid phone number"
             return
